@@ -41,9 +41,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{ data.title }}</h1>
+        <h1>{{ todo.title }}</h1>
         <table>
-            {% for key, value in data.items %}
+            {% for key, value in todo.items %}
                 {% if key != 'title' %}
                     <tr>
                         <th>{{ key }}</th>
@@ -52,6 +52,11 @@
                 {% endif %}
             {% endfor %}
         </table>
+         <a href="{% url 'todo_update' todo.id %}"><button>수정</button></a>
+        <form action="{% url 'todo_delete' todo.id %}" method="POST">
+            {% csrf_token %}
+            <button>삭제</button>
+        </form>
     </div>
 </body>
 </html>
